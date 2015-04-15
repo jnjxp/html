@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "96d34a5994577742e4f9dfdc12802ed4",
+    "hash": "75f49b32d50290944fbeb01c843e7620",
     "packages": [
         {
             "name": "aura/html",
@@ -71,16 +71,16 @@
         },
         {
             "name": "jnjxp/html.head",
-            "version": "dev-master",
+            "version": "v0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jnjxp/html.head.git",
-                "reference": "cc825b056ab63055d644d30902042de8fc63e385"
+                "reference": "aa6bbc61131b9b8658b45cf7bd27b61ffeee35a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jnjxp/html.head/zipball/cc825b056ab63055d644d30902042de8fc63e385",
-                "reference": "cc825b056ab63055d644d30902042de8fc63e385",
+                "url": "https://api.github.com/repos/jnjxp/html.head/zipball/aa6bbc61131b9b8658b45cf7bd27b61ffeee35a1",
+                "reference": "aa6bbc61131b9b8658b45cf7bd27b61ffeee35a1",
                 "shasum": ""
             },
             "require": {
@@ -104,15 +104,13 @@
                 }
             ],
             "description": "helpers for html head meta stuff",
-            "time": "2015-04-15 02:50:16"
+            "time": "2015-04-15 03:57:19"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "jnjxp/html.head": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
