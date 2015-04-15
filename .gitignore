@@ -1,0 +1,31 @@
+### https://raw.github.com/github/gitignore/4a9d41f8947b9fe5850914abb7e59a59e1ae2cb6/Global/Linux.gitignore
+
+*~
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+
+### https://raw.github.com/github/gitignore/4a9d41f8947b9fe5850914abb7e59a59e1ae2cb6/Global/Vim.gitignore
+
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
+
+### https://raw.github.com/github/gitignore/4a9d41f8947b9fe5850914abb7e59a59e1ae2cb6/Composer.gitignore
+
+composer.phar
+vendor/
+
+# Commit your application's lock file http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file
+# You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
+# composer.lock
+
+
