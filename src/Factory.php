@@ -74,12 +74,16 @@ class Factory
         'base'      => '\AuraHtml\Helper\Base',
 
         // Jnjxp
-        'cacheBust' => '\Jnjxl\Html\Helper\CacheBust',
-        'links'     => '\Jnjxl\Html\Helper\Links',
-        'metas'     => '\Jnjxl\Html\Helper\Metas',
-        'scripts'   => '\Jnjxl\Html\Helper\Scripts',
-        'styles'    => '\Jnjxl\Html\Helper\Styles',
-        'title'     => '\Jnjxl\Html\Helper\Title',
+        'cacheBust'  => '\Jnjxl\Html\Helper\CacheBust',
+        'links'      => '\Jnjxl\Html\Helper\Links',
+        'metas'      => '\Jnjxl\Html\Helper\Metas',
+        'scripts'    => '\Jnjxl\Html\Helper\Scripts',
+        'styles'     => '\Jnjxl\Html\Helper\Styles',
+        'title'      => '\Jnjxl\Html\Helper\Title',
+        'icon'       => '\Jnjxl\Html\Helper\Icon',
+        'ico'        => '\Jnjxl\Html\Helper\Icon',
+        'modal'      => '\Jnjxl\Html\Helper\Modal',
+        'breadcrumb' => '\Jnjxl\Html\Helper\Breadcrumb',
     );
 
     /**
