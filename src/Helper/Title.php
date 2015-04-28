@@ -17,7 +17,7 @@
 * You should have received a copy of the GNU Affero General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *
-* @category  Factory
+* @category  Helper
 * @package   Jnjxp\Html
 * @author    Jake Johns <jake@jakejohns.net>
 * @copyright 2015 Jake Johns
@@ -25,73 +25,77 @@
 * @link      http://jakejohns.net
  */
 
-namespace Jnjxp\Html;
+namespace Jnjxp\Html\Helper;
 
-use Aura\Html\HelperLocator as BaseLocator;
-
+use Aura\Html\Helper\Title as AuraTitle;
 
 /**
- * HelperLocator
+ * Title
  *
- * Description Here!
- *
- * @category CategoryName
- * @package  PackageName
+ * @category Helper
+ * @package  Jnjxp\Html
  * @author   Jake Johns <jake@jakejohns.net>
  * @license  http://www.gnu.org/licenses/agpl-3.0.txt AGPL V3
+ * @version  Release: @package_version@
  * @link     http://jakejohns.net
  *
  */
-class HelperLocatorContainer extends BaseLocator
+class Title extends AuraTitle
 {
 
+    protected $site;
+
     /**
-     * __call
+     * setSite
      *
      * Summaries for methods should use 3rd person declarative rather
      * than 2nd person imperative, beginning with a verb phrase.
      *
-     * @param mixed $name DESCRIPTION
-     * @param mixed $args DESCRIPTION
+     * @param mixed $site DESCRIPTION
      *
      * @return mixed
      * @throws exceptionclass [description]
      *
      * @access public
      */
-    public function __call($name, $args)
+    public function setSite($site)
     {
-        $helper = $this->get($name);
-
-        if (!count($args)) {
-            return $helper;
-        }
-
-        if ($helper instanceof BaseLocator) {
-            $helper = $helper->get(array_shift($args));
-        }
-
-        return call_user_func_array(
-            $helper,
-            $args
-        );
+        $this->site = $site;
+        return $this;
     }
 
     /**
-     * __get
+     * __toString
      *
      * Summaries for methods should use 3rd person declarative rather
      * than 2nd person imperative, beginning with a verb phrase.
-     *
-     * @param mixed $name DESCRIPTION
      *
      * @return mixed
      * @throws exceptionclass [description]
      *
      * @access public
      */
-    public function __get($name)
+    public function __toString()
     {
-        return $this->get($name);
+
+        $meta = [
+            'name'     => 'title',
+            'property' => 'og:title',
+            'content'  => $this->title
+        ];
+
+        $site = [
+            'property' => 'og:site_name',
+            'content'  => $this->site
+        ];
+
+        $title = $this->indent(1, "<title>{$this->title}</title>")
+            . $this->inden(1, $this->void('meta', $meta))
+            . ($this->site ? $this->indent(1, $this->void('meta', $site)) : '');
+
+        $this->title = null;
+        $this->site = null;
+
+        return $title;
     }
 }

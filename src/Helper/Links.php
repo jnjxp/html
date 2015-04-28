@@ -17,7 +17,7 @@
 * You should have received a copy of the GNU Affero General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *
-* @category  Factory
+* @category  Helper
 * @package   Jnjxp\Html
 * @author    Jake Johns <jake@jakejohns.net>
 * @copyright 2015 Jake Johns
@@ -25,90 +25,90 @@
 * @link      http://jakejohns.net
  */
 
-namespace Jnjxp\Html;
+namespace Jnjxp\Html\Helper;
 
-use Jnjxp\Html\HtmlHelperLocatorFactory as HtmlFactory;
-
-use Jnjxp\HtmlHead\HelperLocatorFactory as HeadFactory;
-
-use Aura\Html\HelperLocator;
+use Aura\Html\Helper\Links as AuraLinksHelper;
 
 /**
- * HelperLocatorFactory
+ * Icons
  *
- * Description Here!
- *
- * @category CategoryName
- * @package  PackageName
+ * @category Helper
+ * @package  Jnjxp\Html
  * @author   Jake Johns <jake@jakejohns.net>
  * @license  http://www.gnu.org/licenses/agpl-3.0.txt AGPL V3
+ * @version  Release: @package_version@
  * @link     http://jakejohns.net
  *
  */
-class HelperLocatorContainerFactory
+class Links extends AuraLinksHelper
 {
 
     /**
-     * flags
+     * data
      *
      * @var mixed
      * @access protected
      */
-    protected $flags;
+    protected $icons = [
+        'apple-touch-icon' => [
+            'pattern' => '/assets/ico/apple-touch-icon-%sx%1$s.png',
+            'sizes' => [144, 114, 72, 57]
+        ],
+        'icon' => [
+            'pattern' => '/assets/ico/favicon-%sx%1$s.png',
+            'sizes' => [192, 96, 32, 16],
+            'attr' => ['type' => 'image/png']
+        ]
+    ];
+
 
     /**
-     * encoding
-     *
-     * @var mixed
-     * @access protected
-     */
-    protected $encoding;
-
-    /**
-     * __construct
+     * icons
      *
      * Summaries for methods should use 3rd person declarative rather
      * than 2nd person imperative, beginning with a verb phrase.
      *
-     * @param mixed $encoding DESCRIPTION
-     * @param mixed $flags    DESCRIPTION
+     * @param mixed $icons DESCRIPTION
      *
      * @return mixed
      * @throws exceptionclass [description]
      *
      * @access public
      */
-    public function __construct($encoding = null, $flags = null)
+    public function icons($icons = null)
     {
-        $this->encoding = $encoding;
-        $this->flags = $flags;
+        foreach ($this->fixIconsArray(($icons ?: $this->icons)) as $icon) {
+            $this->add($icon);
+        }
+        return $this;
     }
 
     /**
-     * newInstance
+     * fixIconsArray
      *
      * Summaries for methods should use 3rd person declarative rather
      * than 2nd person imperative, beginning with a verb phrase.
      *
+     * @param mixed $icons DESCRIPTION
+     *
      * @return mixed
      * @throws exceptionclass [description]
      *
-     * @access public
+     * @access protected
      */
-    public function newInstance()
+    protected function fixIconsArray($icons)
     {
-        $encoding = $this->encoding;
-        $flags    = $this->flags;
-
-        return new HelperLocatorContainer(
-            [
-                'head' => function () use ($encoding, $flags) {
-                    return (new HeadFactory($encoding, $flags))->newInstance();
-                },
-                'html' => function () use ($encoding, $flags) {
-                    return (new HtmlFactory($encoding, $flags))->newInstance();
-                },
-            ]
-        );
+        $array = [];
+        foreach ($icons as $rel => $data) {
+            foreach ((array) $data['sizes'] as $size) {
+                $array[] = [
+                    'rel'   => $rel,
+                    'sizes' => "{$size}x{$size}",
+                    'href'  => sprintf($data['pattern'], $size),
+                    'attr'  => (isset($data['attr']) ? $data['attr'] : [])
+                ];
+            }
+        }
+        return $array;
     }
 }
