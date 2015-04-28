@@ -60,18 +60,18 @@ class Factory
      */
     protected $helpers = array(
         // Aura
-        'a'         => '\AuraHtml\Helper\Anchor',
-        'anchor'    => '\AuraHtml\Helper\Anchor',
-        'aRaw'      => '\AuraHtml\Helper\AnchorRaw',
-        'anchorRaw' => '\AuraHtml\Helper\AnchorRaw',
-        'form'      => '\AuraHtml\Helper\Form',
-        'img'       => '\AuraHtml\Helper\Img',
-        'image'     => '\AuraHtml\Helper\Img',
-        'label'     => '\AuraHtml\Helper\Label',
-        'ol'        => '\AuraHtml\Helper\Ol',
-        'tag'       => '\AuraHtml\Helper\Tag',
-        'ul'        => '\AuraHtml\Helper\Ul',
-        'base'      => '\AuraHtml\Helper\Base',
+        'a'         => '\Aura\Html\Helper\Anchor',
+        'anchor'    => '\Aura\Html\Helper\Anchor',
+        'aRaw'      => '\Aura\Html\Helper\AnchorRaw',
+        'anchorRaw' => '\Aura\Html\Helper\AnchorRaw',
+        'form'      => '\Aura\Html\Helper\Form',
+        'img'       => '\Aura\Html\Helper\Img',
+        'image'     => '\Aura\Html\Helper\Img',
+        'label'     => '\Aura\Html\Helper\Label',
+        'ol'        => '\Aura\Html\Helper\Ol',
+        'tag'       => '\Aura\Html\Helper\Tag',
+        'ul'        => '\Aura\Html\Helper\Ul',
+        'base'      => '\Aura\Html\Helper\Base',
 
         // Jnjxp
         'cacheBust'  => '\Jnjxl\Html\Helper\CacheBust',
