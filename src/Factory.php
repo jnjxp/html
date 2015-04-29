@@ -74,16 +74,17 @@ class Factory
         'base'      => '\Aura\Html\Helper\Base',
 
         // Jnjxp
-        'cacheBust'  => '\Jnjxp\Html\Helper\CacheBust',
-        'links'      => '\Jnjxp\Html\Helper\Links',
-        'metas'      => '\Jnjxp\Html\Helper\Metas',
-        'scripts'    => '\Jnjxp\Html\Helper\Scripts',
-        'styles'     => '\Jnjxp\Html\Helper\Styles',
-        'title'      => '\Jnjxp\Html\Helper\Title',
-        'icon'       => '\Jnjxp\Html\Helper\Icon',
-        'ico'        => '\Jnjxp\Html\Helper\Icon',
-        'modal'      => '\Jnjxp\Html\Helper\Modal',
-        'breadcrumb' => '\Jnjxp\Html\Helper\Breadcrumb',
+        'cacheBust'   => '\Jnjxp\Html\Helper\CacheBust',
+        'links'       => '\Jnjxp\Html\Helper\Links',
+        'metas'       => '\Jnjxp\Html\Helper\Metas',
+        'scripts'     => '\Jnjxp\Html\Helper\Scripts',
+        'scriptsFoot' => '\Jnjxp\Html\Helper\Scripts',
+        'styles'      => '\Jnjxp\Html\Helper\Styles',
+        'title'       => '\Jnjxp\Html\Helper\Title',
+        'icon'        => '\Jnjxp\Html\Helper\Icon',
+        'ico'         => '\Jnjxp\Html\Helper\Icon',
+        'modal'       => '\Jnjxp\Html\Helper\Modal',
+        'breadcrumb'  => '\Jnjxp\Html\Helper\Breadcrumb',
     );
 
     /**
