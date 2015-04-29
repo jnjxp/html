@@ -137,7 +137,7 @@ class Scripts extends AuraScripts
     public function addEventListener($script, $event, $position = 1000)
     {
         $function = "function(event) { {$script} }";
-        $this->addEventListenerFunction($event, $function, $position);
+        $this->addEventListenerFunction($function, $event, $position);
         return $this;
     }
 
