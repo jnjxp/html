@@ -90,7 +90,7 @@ class Title extends AuraTitle
         ];
 
         $title = $this->indent(1, "<title>{$this->title}</title>")
-            . $this->inden(1, $this->void('meta', $meta))
+            . $this->indent(1, $this->void('meta', $meta))
             . ($this->site ? $this->indent(1, $this->void('meta', $site)) : '');
 
         $this->title = null;
