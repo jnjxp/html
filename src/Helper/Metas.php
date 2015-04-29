@@ -130,6 +130,7 @@ class Metas extends AuraMetas
     public function compat($content, $position = 100)
     {
         $this->addHttp('X-UA-Compatible', $content, $position);
+        return $this;
     }
 
     /**
@@ -275,5 +276,6 @@ class Metas extends AuraMetas
                 ]
             )
         );
+        return $this;
     }
 }
