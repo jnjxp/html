@@ -163,7 +163,7 @@ class Locator
     public function get($name)
     {
         if (! $this->has($name)) {
-            throw new Exception\HelperNotFoundException($name);
+            throw new Exception\HelperNotFoundException("Helper '$name' not found");
         }
 
         if (! isset($this->helpers[$name])) {
