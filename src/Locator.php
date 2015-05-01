@@ -105,16 +105,15 @@ class Locator
     /**
      * Calls helper with args if args present
      *
-     * @param array $args arguments
-     *
      * @return mixed
      *
      * @access public
      */
-    public function __invoke($args)
+    public function __invoke()
     {
+        $args = func_get_args();
         if (count($args)) {
-            $this->__call(array_shift($args), $args);
+            return $this->__call(array_shift($args), $args);
         }
         return $this;
     }
