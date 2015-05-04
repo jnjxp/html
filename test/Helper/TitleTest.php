@@ -17,7 +17,7 @@
 * You should have received a copy of the GNU Affero General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *
-* @category  Helper
+* @category  Test
 * @package   Jnjxp\Html
 * @author    Jake Johns <jake@jakejohns.net>
 * @copyright 2015 Jake Johns
@@ -25,56 +25,52 @@
 * @link      http://jakejohns.net
  */
 
-namespace Jnjxp\Html\Helper;
-
-use Aura\Html\Helper\AbstractHelper;
+namespace JnjxpTest\Html\Helper;
 
 /**
- * Create an icon
+ * Title Test
  *
- * Description Here!
- *
- * @category Helper
- * @package  Jnjxp\Icon
+ * @category Test
+ * @package  Jnjxp\Html
  * @author   Jake Johns <jake@jakejohns.net>
  * @license  http://www.gnu.org/licenses/agpl-3.0.txt AGPL V3
  * @link     http://jakejohns.net
  *
- * @see      AbstractHelper
+ * @see      PHPUnit_Framework_TestCase
  */
-class Icon extends AbstractHelper
+class TitleTest extends AbstractHelperTest
 {
 
     /**
-     * create markup for an icon with optional alt
+     * helper sets title
      *
-     * @param string $name name of icon
-     * @param mixed  $alt  false for no alt, true for name as alt, or string for alt
-     *
-     * @return string
+     * @return void
      *
      * @access public
      */
-    public function __invoke($name, $alt = false)
+    public function testTitle()
     {
-        $attr = $this->escaper->attr(
-            [
-                'class'       => ['icon', "icon-{$name}"],
-                'aria-hidden' => 'true'
-            ]
-        );
+        $helper = $this->helper;
+        $helper('foo');
+        $actual = "$helper";
+        $expect = '    <title>foo</title>'
+            . PHP_EOL
+            . '    <meta name="title" property="og:title" content="foo" />'
+            . PHP_EOL;
+        $this->assertSame($expect, $actual);
 
-        $ico = "<span {$attr}><!-- --></span>";
-
-        if ($alt) {
-            if (true === $alt) {
-                $alt = $name;
-            }
-            $alt = $this->escaper->html($alt);
-            $alt = "<span class=\"sr-only\">{$alt}</span>";
-            $ico = "{$ico} {$alt}";
-        }
-
-        return $ico;
+        // with site
+        $helper = $this->helper;
+        $helper('foo');
+        $helper->setSite('BAR');
+        $actual = "$helper";
+        $expect = '    <title>foo</title>'
+            . PHP_EOL
+            . '    <meta name="title" property="og:title" content="foo" />'
+            . PHP_EOL
+            . '    <meta property="og:site_name" content="BAR" />'
+            . PHP_EOL;
+        $this->assertSame($expect, $actual);
     }
+
 }

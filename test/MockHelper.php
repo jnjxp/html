@@ -17,7 +17,7 @@
 * You should have received a copy of the GNU Affero General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *
-* @category  Helper
+* @category  Test
 * @package   Jnjxp\Html
 * @author    Jake Johns <jake@jakejohns.net>
 * @copyright 2015 Jake Johns
@@ -25,56 +25,31 @@
 * @link      http://jakejohns.net
  */
 
-namespace Jnjxp\Html\Helper;
-
-use Aura\Html\Helper\AbstractHelper;
+namespace JnjxpTest\Html;
 
 /**
- * Create an icon
+ * MockHelper
  *
- * Description Here!
- *
- * @category Helper
- * @package  Jnjxp\Icon
+ * @category Test
+ * @package  Jnjxp\Html
  * @author   Jake Johns <jake@jakejohns.net>
  * @license  http://www.gnu.org/licenses/agpl-3.0.txt AGPL V3
  * @link     http://jakejohns.net
  *
- * @see      AbstractHelper
  */
-class Icon extends AbstractHelper
+class MockHelper
 {
-
     /**
-     * create markup for an icon with optional alt
+     * Returns test string
      *
-     * @param string $name name of icon
-     * @param mixed  $alt  false for no alt, true for name as alt, or string for alt
+     * @param mixed $string input
      *
-     * @return string
+     * @return string Test concat with arg string
      *
      * @access public
      */
-    public function __invoke($name, $alt = false)
+    public function __invoke($string)
     {
-        $attr = $this->escaper->attr(
-            [
-                'class'       => ['icon', "icon-{$name}"],
-                'aria-hidden' => 'true'
-            ]
-        );
-
-        $ico = "<span {$attr}><!-- --></span>";
-
-        if ($alt) {
-            if (true === $alt) {
-                $alt = $name;
-            }
-            $alt = $this->escaper->html($alt);
-            $alt = "<span class=\"sr-only\">{$alt}</span>";
-            $ico = "{$ico} {$alt}";
-        }
-
-        return $ico;
+        return "Test $string";
     }
 }

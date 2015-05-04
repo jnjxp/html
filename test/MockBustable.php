@@ -17,7 +17,7 @@
 * You should have received a copy of the GNU Affero General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *
-* @category  Helper
+* @category  Test
 * @package   Jnjxp\Html
 * @author    Jake Johns <jake@jakejohns.net>
 * @copyright 2015 Jake Johns
@@ -25,56 +25,83 @@
 * @link      http://jakejohns.net
  */
 
-namespace Jnjxp\Html\Helper;
+namespace JnjxpTest\Html;
 
-use Aura\Html\Helper\AbstractHelper;
+use Jnjxp\Html\Helper\Traits\CacheBustableTrait;
 
 /**
- * Create an icon
+ * MockBustable
  *
- * Description Here!
- *
- * @category Helper
- * @package  Jnjxp\Icon
+ * @category Test
+ * @package  Jnjxp\Html
  * @author   Jake Johns <jake@jakejohns.net>
  * @license  http://www.gnu.org/licenses/agpl-3.0.txt AGPL V3
  * @link     http://jakejohns.net
  *
- * @see      AbstractHelper
  */
-class Icon extends AbstractHelper
+class MockBustable
 {
+    use CacheBustableTrait;
 
     /**
-     * create markup for an icon with optional alt
+     * testHref
      *
-     * @param string $name name of icon
-     * @param mixed  $alt  false for no alt, true for name as alt, or string for alt
+     * @param string $href Fake Property to bust
      *
      * @return string
      *
      * @access public
      */
-    public function __invoke($name, $alt = false)
+    public function testHref($href)
     {
-        $attr = $this->escaper->attr(
-            [
-                'class'       => ['icon', "icon-{$name}"],
-                'aria-hidden' => 'true'
-            ]
-        );
+        return $href;
+    }
 
-        $ico = "<span {$attr}><!-- --></span>";
+    /**
+     * testSrc
+     *
+     * @param string $src Fake Property to bust
+     *
+     * @return string
+     *
+     * @access public
+     */
+    public function testSrc($src)
+    {
+        return $src;
+    }
 
-        if ($alt) {
-            if (true === $alt) {
-                $alt = $name;
-            }
-            $alt = $this->escaper->html($alt);
-            $alt = "<span class=\"sr-only\">{$alt}</span>";
-            $ico = "{$ico} {$alt}";
-        }
+    /**
+     * testFoo
+     *
+     * @param string $foo Fake Property to leave be
+     *
+     * @return string
+     *
+     * @access public
+     */
+    public function testFoo($foo)
+    {
+        return $foo;
+    }
 
-        return $ico;
+    /**
+     * mock add
+     *
+     * @param string $href Fake Property to bust
+     * @param string $src  Fake Property to bust
+     * @param string $foo  Fake Property to leave be
+     *
+     * @return array
+     *
+     * @access public
+     */
+    public function add($href, $src, $foo)
+    {
+        return [
+            $href,
+            $src,
+            $foo
+        ];
     }
 }

@@ -31,7 +31,7 @@ use Aura\Html\Helper\Scripts as AuraScripts;
 use Jnjxp\Html\Helper\Traits\CacheBustableTrait;
 
 /**
- * Scripts
+ * HTML Scripts
  *
  * @category Helper
  * @package  Jnjxp\Html
@@ -46,9 +46,9 @@ class Scripts extends AuraScripts
     use CacheBustableTrait;
 
     /**
-     * capture
+     * started capture meta
      *
-     * @var mixed
+     * @var array
      * @access protected
      */
     protected $capture = [];
@@ -56,14 +56,10 @@ class Scripts extends AuraScripts
     /**
      * addInline
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $script   javascript snippet
+     * @param int    $position sort order
      *
-     * @param mixed $script   DESCRIPTION
-     * @param int   $position DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Scripts
      *
      * @access public
      */
@@ -76,101 +72,43 @@ class Scripts extends AuraScripts
     }
 
     /**
-     * addEventListenerFunction
+     * add an event listner
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $function javascript sniuppet
+     * @param string $event    event to bind to, defaults to document
+     * @param string $node     node to bind
+     * @param bool   $wrap     if true, $funciton is wrappped in a function
+     * @param int    $position sort order
      *
-     * @param mixed  $function DESCRIPTION
-     * @param string $event    DESCRIPTION
-     * @param int    $position DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Scripts
      *
      * @access public
      */
-    public function addEventListenerFunction($function, $event, $position = 1000)
-    {
+    public function addEventListener(
+        $function,
+        $event = null,
+        $node  = null,
+        $wrap  = false,
+        $position = 1000
+    ) {
+        $event = $event ?: 'DOMContentLoaded';
+        $node  = $node  ?: 'document';
+
+        $function = ($wrap ? "function(event) { {$function} }" : $function);
+
         $this->addInline(
-            "document.addEventListener(\"{$event}\", {$function});",
+            "{$node}.addEventListener(\"{$event}\", {$function});",
             $position
         );
         return $this;
     }
 
     /**
-     * addLoadedListenerFunction
+     * start capturing a snippet
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param int $position sort order
      *
-     * @param mixed $function DESCRIPTION
-     * @param int   $position DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
-     *
-     * @access public
-     */
-    public function addLoadedListenerFunction($function, $position = 1000)
-    {
-        $this->addEventListenerFunction($function, 'DOMContentLoaded', $position);
-        return $this;
-    }
-
-    /**
-     * addEventListener
-     *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
-     *
-     * @param mixed  $script   DESCRIPTION
-     * @param string $event    DESCRIPTION
-     * @param int    $position DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
-     *
-     * @access public
-     */
-    public function addEventListener($script, $event, $position = 1000)
-    {
-        $function = "function(event) { {$script} }";
-        $this->addEventListenerFunction($function, $event, $position);
-        return $this;
-    }
-
-    /**
-     * addLoadedListener
-     *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
-     *
-     * @param mixed $script   DESCRIPTION
-     * @param int   $position DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
-     *
-     * @access public
-     */
-    public function addLoadedListener($script, $position = 1000)
-    {
-        $this->addEventListener($script, 'DOMContentLoaded', $position);
-        return $this;
-    }
-
-    /**
-     * inlineCaptureStart
-     *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
-     *
-     * @param int $position DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Scripts
      *
      * @access public
      */
@@ -183,67 +121,45 @@ class Scripts extends AuraScripts
             ]
         ];
         ob_start();
+        return $this;
     }
 
     /**
-     * inlineCaptureEnd
+     * start capturing an event to bind
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $event    event to bind to, defaults to document
+     * @param string $node     node to bind
+     * @param bool   $wrap     if true, $funciton is wrappped in a function
+     * @param int    $position sort order
      *
-     * @param string $event    DESCRIPTION
-     * @param int    $position DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Scripts
      *
      * @access public
      */
-    public function eventCaptureStart($event, $position = 1000)
-    {
+    public function eventCaptureStart(
+        $event = null,
+        $node = null,
+        $wrap = false,
+        $position = 1000
+    ) {
         $this->capture[] = [
             'func' => 'addEventListener',
             'args' => [
                 $event,
+                $node,
+                $wrap,
                 $position
             ]
         ];
         ob_start();
+        return $this;
     }
 
-    /**
-     * inlineCaptureLoadedEnd
-     *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
-     *
-     * @param int $position DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
-     *
-     * @access public
-     */
-    public function loadedCaptureStart($position = 1000)
-    {
-        $this->capture[] = [
-            'func' => 'addEventListener',
-            'args' => [
-                'DOMContentLoaded',
-                $position
-            ]
-        ];
-        ob_start();
-    }
 
     /**
-     * inlineCaptureEnd
+     * end capture
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Scripts
      *
      * @access public
      */
@@ -255,5 +171,6 @@ class Scripts extends AuraScripts
             [$this, $capture['func']],
             $capture['args']
         );
+        return $this;
     }
 }

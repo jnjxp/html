@@ -17,7 +17,7 @@
 * You should have received a copy of the GNU Affero General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *
-* @category  Helper
+* @category  Test
 * @package   Jnjxp\Html
 * @author    Jake Johns <jake@jakejohns.net>
 * @copyright 2015 Jake Johns
@@ -25,56 +25,55 @@
 * @link      http://jakejohns.net
  */
 
-namespace Jnjxp\Html\Helper;
+namespace JnjxpTest\Html\Helper;
 
-use Aura\Html\Helper\AbstractHelper;
+use Aura\Html\EscaperFactory;
 
 /**
- * Create an icon
+ * AbstractHelperTest
  *
- * Description Here!
- *
- * @category Helper
- * @package  Jnjxp\Icon
+ * @category Test
+ * @package  Jnjxp\Html
  * @author   Jake Johns <jake@jakejohns.net>
  * @license  http://www.gnu.org/licenses/agpl-3.0.txt AGPL V3
  * @link     http://jakejohns.net
  *
- * @see      AbstractHelper
+ * @see      PHPUnit_Framework_TestCase
+ * @abstract
  */
-class Icon extends AbstractHelper
+abstract class AbstractHelperTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * instance of helper being tested
+     *
+     * @var mixed
+     * @access protected
+     */
+    protected $helper;
 
     /**
-     * create markup for an icon with optional alt
+     * calls function to instantiate helper based on test class name
      *
-     * @param string $name name of icon
-     * @param mixed  $alt  false for no alt, true for name as alt, or string for alt
+     * @return mixed
      *
-     * @return string
-     *
-     * @access public
+     * @access protected
      */
-    public function __invoke($name, $alt = false)
+    protected function setUp()
     {
-        $attr = $this->escaper->attr(
-            [
-                'class'       => ['icon', "icon-{$name}"],
-                'aria-hidden' => 'true'
-            ]
-        );
+        parent::setUp();
+        $this->helper = $this->newHelper();
+    }
 
-        $ico = "<span {$attr}><!-- --></span>";
-
-        if ($alt) {
-            if (true === $alt) {
-                $alt = $name;
-            }
-            $alt = $this->escaper->html($alt);
-            $alt = "<span class=\"sr-only\">{$alt}</span>";
-            $ico = "{$ico} {$alt}";
-        }
-
-        return $ico;
+    /**
+     * instantiate helper based on test class name
+     *
+     * @return mixed
+     *
+     * @access protected
+     */
+    protected function newHelper()
+    {
+        $class = 'Jnjxp' . substr(get_class($this), 9, -4);
+        return new $class((new EscaperFactory())->newInstance());
     }
 }

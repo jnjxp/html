@@ -19,9 +19,17 @@
         "php": ">=5.3.0",
         "aura/html": "~2.1"
     },
+    "require-dev": {
+        "phpunit/PHPUnit": "3.7.*"
+    },
     "autoload": {
         "psr-4": {
             "Jnjxp\\Html\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JnjxpTest\\Html\\": "test/"
         }
     }
 }

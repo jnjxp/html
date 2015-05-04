@@ -42,32 +42,48 @@ use Jnjxp\Html\Helper\CacheBusterDecorator;
 trait CacheBustableTrait
 {
     /**
-     * cacheBusterFactory
+     * decorated instance factory
      *
-     * @var mixed
+     * @var callable factory to create a cache bust decorated object
      * @access protected
      */
     protected $cacheBusterFactory;
 
     /**
-    * bust
+     * decorated instance
+     *
+     * @var CacheBusterDecorator
+     * @access protected
+     */
+    protected $busted;
+
+    /**
+    * decorate object and optionally set default manifest
     *
-    * @param mixed $manifest DESCRIPTION
+    * @param string $manifest path to manifest
     *
-    * @return mixed
+    * @return CacheBusterDecorator
     *
     * @access public
     */
     public function bust($manifest = null)
     {
-        $factory = $this->getCacheBusterFactory();
-        return $factory($this, $manifest);
+        if (null === $this->busted) {
+            $factory = $this->getCacheBusterFactory();
+            $this->busted = $factory($this);
+        }
+
+        if ($manifest) {
+            $this->busted->setDefaultManifest($manifest);
+        }
+
+        return $this->busted;
     }
 
     /**
-    * setCacheBusterFactory
+    * set decorator factory
     *
-    * @param mixed $factory DESCRIPTION
+    * @param callable $factory factory to create decorated instance
     *
     * @return mixed
     *
@@ -76,20 +92,21 @@ trait CacheBustableTrait
     public function setCacheBusterFactory($factory)
     {
         $this->cacheBusterFactory = $factory;
+        return $this;
     }
 
     /**
-    * getCacheBusterFactory
+    * gets decorated instance factory
     *
-    * @return mixed
+    * @return callable
     *
     * @access public
     */
     public function getCacheBusterFactory()
     {
         if (null === $this->cacheBusterFactory) {
-            $this->cacheBusterFactory = function ($helper, $manifest) {
-                return new CacheBusterDecorator($helper, $manifest);
+            $this->cacheBusterFactory = function ($helper) {
+                return new CacheBusterDecorator($helper);
             };
         }
         return $this->cacheBusterFactory;

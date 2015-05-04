@@ -30,7 +30,9 @@ namespace Jnjxp\Html\Helper;
 use Aura\Html\Helper\AbstractHelper;
 
 /**
- * Title
+ * Create a bread crumb navigation
+ *
+ * see http://schema.org/BreadcrumbList
  *
  * @category Helper
  * @package  Jnjxp\Html
@@ -43,7 +45,9 @@ use Aura\Html\Helper\AbstractHelper;
 class Breadcrumb extends AbstractHelper
 {
     /**
-     * baseAttr
+     * base attributes
+     *
+     * see http://schema.org/BreadcrumbList
      *
      * @var mixed
      * @access protected
@@ -76,23 +80,23 @@ class Breadcrumb extends AbstractHelper
     ];
 
     /**
-     * attr
+     * user set attributes for breadcrumb
      *
-     * @var mixed
+     * @var array
      * @access protected
      */
     protected $attr = [];
 
     /**
-     * stack
+     * bread crumb items
      *
-     * @var mixed
+     * @var array
      * @access protected
      */
     protected $stack = [];
 
     /**
-     * html
+     * html output
      *
      * @var string
      * @access protected
@@ -100,15 +104,11 @@ class Breadcrumb extends AbstractHelper
     protected $html = '';
 
     /**
-     * __invoke
+     * set attributes for breadcrumb
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param array $attr attributes
      *
-     * @param array $attr DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Breadcrumb
      *
      * @access public
      */
@@ -121,13 +121,9 @@ class Breadcrumb extends AbstractHelper
     }
 
     /**
-     * __toString
+     * print breadcrumb
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return string
      *
      * @access public
      */
@@ -168,20 +164,16 @@ class Breadcrumb extends AbstractHelper
     }
 
     /**
-     * buildItem
+     * build an item
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param int   $position numeric position
+     * @param array $item     array representation of item
      *
-     * @param mixed $position DESCRIPTION
-     * @param mixed $item     DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return void
      *
      * @access protected
      */
-    protected function buildItem($position, $item)
+    protected function buildItem($position, array $item)
     {
         $position +=1;
 
@@ -209,15 +201,11 @@ class Breadcrumb extends AbstractHelper
     }
 
     /**
-     * buildActive
+     * build the active item
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param array $active array representation of item
      *
-     * @param array $active DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return void
      *
      * @access protected
      */
@@ -232,17 +220,13 @@ class Breadcrumb extends AbstractHelper
 
 
     /**
-     * addItem
+     * add an item
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $title  text for item
+     * @param string $uri    uri for item
+     * @param array  $liAttr attributes for li element
      *
-     * @param mixed  $title  DESCRIPTION
-     * @param string $uri    DESCRIPTION
-     * @param array  $liAttr DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Breadcrumb
      *
      * @access public
      */
@@ -257,17 +241,13 @@ class Breadcrumb extends AbstractHelper
     }
 
     /**
-     * item
+     * add a raw item
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $title  title of item
+     * @param string $uri    uri of item
+     * @param mixed  $liAttr attributes for li element
      *
-     * @param mixed  $title  DESCRIPTION
-     * @param string $uri    DESCRIPTION
-     * @param mixed  $liAttr DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Breadcrumb
      *
      * @access public
      */
@@ -278,15 +258,11 @@ class Breadcrumb extends AbstractHelper
     }
 
     /**
-     * items
+     * add an array of items
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param array $items array of items
      *
-     * @param array $items DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Breadcrumb
      *
      * @access public
      */
@@ -300,15 +276,11 @@ class Breadcrumb extends AbstractHelper
     }
 
     /**
-     * rawItems
+     * add an array of raw items
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param array $items array of raw items to add
      *
-     * @param array $items DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Breadcrumb
      *
      * @access public
      */
@@ -322,16 +294,12 @@ class Breadcrumb extends AbstractHelper
     }
 
     /**
-     * fixData
+     * fixes item data
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param mixed $uri   uri of item or numeric key
+     * @param mixed $title title of item or array of title and li attrs
      *
-     * @param mixed $uri   DESCRIPTION
-     * @param mixed $title DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return array
      *
      * @access protected
      */
