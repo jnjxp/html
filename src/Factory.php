@@ -35,8 +35,8 @@ use Aura\Html\HelperLocatorFactory as AuraFactory;
  *
  * Description Here!
  *
- * @category CategoryName
- * @package  PackageName
+ * @category Factory
+ * @package  Jnjxp\Html
  * @author   Jake Johns <jake@jakejohns.net>
  * @license  http://www.gnu.org/licenses/agpl-3.0.txt AGPL V3
  * @link     http://jakejohns.net

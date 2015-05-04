@@ -30,7 +30,7 @@ namespace Jnjxp\Html\Helper;
 use Aura\Html\Helper\AbstractHelper;
 
 /**
- * Modal
+ * Bootstrap Modal window
  *
  * A Bootstrap modal window.
  *

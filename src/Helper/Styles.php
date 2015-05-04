@@ -31,7 +31,7 @@ use Aura\Html\Helper\Styles as AuraStyles;
 use Jnjxp\Html\Helper\Traits\CacheBustableTrait;
 
 /**
- * Scripts
+ * HTML Styles
  *
  * @category Helper
  * @package  Jnjxp\Html

@@ -30,7 +30,7 @@ namespace Jnjxp\Html\Helper;
 use Jnjxp\Html\Helper\Traits\CacheBusterTrait;
 
 /**
- * CacheBust
+ * Cache bust a file
  *
  * @category Helper
  * @package  Jnjxp\Helper

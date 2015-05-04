@@ -34,7 +34,7 @@ use BadMethodCallException;
 use ReflectionMethod;
 
 /**
- * CacheBusted
+ * Decorate helper with cachebusting function
  *
  * @category Decorator
  * @package  Jnjxp\Helper

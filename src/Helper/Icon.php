@@ -30,7 +30,7 @@ namespace Jnjxp\Html\Helper;
 use Aura\Html\Helper\AbstractHelper;
 
 /**
- * Icon
+ * Create an icon
  *
  * Description Here!
  *

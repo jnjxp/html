@@ -30,7 +30,7 @@ namespace Jnjxp\Html\Helper;
 use Aura\Html\Helper\Metas as AuraMetas;
 
 /**
- * Description
+ * HTML Meta tags
  *
  * @category Helper
  * @package  Jnjxp\Html

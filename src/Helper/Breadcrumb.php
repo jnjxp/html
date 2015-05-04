@@ -30,7 +30,9 @@ namespace Jnjxp\Html\Helper;
 use Aura\Html\Helper\AbstractHelper;
 
 /**
- * Title
+ * Create a bread crumb navigation
+ *
+ * see http://schema.org/BreadcrumbList
  *
  * @category Helper
  * @package  Jnjxp\Html

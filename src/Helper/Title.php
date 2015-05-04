@@ -30,7 +30,7 @@ namespace Jnjxp\Html\Helper;
 use Aura\Html\Helper\Title as AuraTitle;
 
 /**
- * Title
+ * HTML Title tags and meta
  *
  * @category Helper
  * @package  Jnjxp\Html

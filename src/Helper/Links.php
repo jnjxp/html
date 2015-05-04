@@ -30,7 +30,7 @@ namespace Jnjxp\Html\Helper;
 use Aura\Html\Helper\Links as AuraLinksHelper;
 
 /**
- * Icons
+ * HTML Head links
  *
  * @category Helper
  * @package  Jnjxp\Html
