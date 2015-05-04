@@ -47,13 +47,13 @@ class Factory
     /**
      * escaper
      *
-     * @var mixed
+     * @var Aura\Html\Escaper
      * @access protected
      */
     protected $escaper;
 
     /**
-     * helpers
+     * helpers for which to create factories
      *
      * @var array
      * @access protected
@@ -102,13 +102,9 @@ class Factory
     }
 
     /**
-     * newInstance
+     * create locator
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Locator
      *
      * @access public
      */
@@ -119,13 +115,9 @@ class Factory
     }
 
     /**
-     * getFactories
+     * create array of factories
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return array
      *
      * @access protected
      */

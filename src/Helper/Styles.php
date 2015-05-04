@@ -54,37 +54,31 @@ class Styles extends AuraStyles
     protected $capture = [];
 
     /**
-     * inline
+     * makes an internal style tag
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $style css snippet
+     * @param array  $attr  attributes for style tag
      *
-     * @param mixed $style DESCRIPTION
-     * @param array $attr  DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return string
      *
      * @access public
      */
     public function inline($style, array $attr = null)
     {
-        $attr = $this->fixInlineAttr($attr);
+        $attr = $this->escaper->attr(
+            $this->fixInlineAttr($attr)
+        );
         return "<style {$attr}>{$style}</style>";
     }
 
     /**
-     * inlineCond
+     * add inline conditional style
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $cond  ie condition
+     * @param string $style css snippet
+     * @param array  $attr  attributes for style tag
      *
-     * @param mixed $cond  DESCRIPTION
-     * @param mixed $style DESCRIPTION
-     * @param array $attr  DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return string
      *
      * @access public
      */
@@ -96,17 +90,13 @@ class Styles extends AuraStyles
     }
 
     /**
-     * addInline
+     * add inline css
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $style    css snippet
+     * @param array  $attr     attributes for style tag
+     * @param int    $position sort
      *
-     * @param mixed $style    DESCRIPTION
-     * @param array $attr     DESCRIPTION
-     * @param int   $position DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Styles
      *
      * @access public
      */
@@ -120,18 +110,14 @@ class Styles extends AuraStyles
     }
 
     /**
-     * addInlineCond
+     * add inline conditional css
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $cond     ie condition
+     * @param string $style    css snippet
+     * @param array  $attr     attributes for style tag
+     * @param int    $position sort
      *
-     * @param mixed $cond     DESCRIPTION
-     * @param mixed $style    DESCRIPTION
-     * @param array $attr     DESCRIPTION
-     * @param int   $position DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Styles
      *
      * @access public
      */
@@ -149,16 +135,12 @@ class Styles extends AuraStyles
     }
 
     /**
-     * inlineCaptureStart
+     * capture inline snippet
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param array $attr     attributes for style tag
+     * @param int   $position sort
      *
-     * @param array $attr     DESCRIPTION
-     * @param int   $position DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Styles
      *
      * @access public
      */
@@ -174,20 +156,17 @@ class Styles extends AuraStyles
         ];
 
         ob_start();
+        return $this;
     }
 
     /**
-     * inlineCaptureCondStart
+     * capture inline conditional style
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param mixed $cond     ie condition
+     * @param array $attr     attributes for style tag
+     * @param int   $position sort
      *
-     * @param mixed $cond     DESCRIPTION
-     * @param array $attr     DESCRIPTION
-     * @param int   $position DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Styles
      *
      * @access public
      */
@@ -197,7 +176,7 @@ class Styles extends AuraStyles
         $position = 1000
     ) {
         $this->capture[] = [
-            'func' => 'addInline',
+            'func' => 'addInlineCond',
             'args' => [
                 $cond,
                 'style' => '',
@@ -207,16 +186,13 @@ class Styles extends AuraStyles
         ];
 
         ob_start();
+        return $this;
     }
 
     /**
-     * inlineCaptureEnd
+     * end capture
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Styles
      *
      * @access public
      */
@@ -228,18 +204,15 @@ class Styles extends AuraStyles
             [$this, $capture['func']],
             $capture['args']
         );
+        return $this;
     }
 
     /**
-     * fixInlineAttr
+     * fix attributes
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param array $attr attributes
      *
-     * @param array $attr DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return array
      *
      * @access protected
      */

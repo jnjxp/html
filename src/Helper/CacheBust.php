@@ -47,11 +47,10 @@ class CacheBust
     /**
     * __invoke
     *
-    * @param mixed $file     DESCRIPTION
-    * @param mixed $manifest DESCRIPTION
+    * @param string $file     file to cache bust
+    * @param string $manifest manifest to bust with
     *
-    * @return mixed
-    * @throws exceptionclass [description]
+    * @return string
     *
     * @access public
     */

@@ -43,18 +43,20 @@ use Aura\Html\Helper\Title as AuraTitle;
 class Title extends AuraTitle
 {
 
+    /**
+     * site title
+     *
+     * @var string
+     * @access protected
+     */
     protected $site;
 
     /**
-     * setSite
+     * set site title for meta
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param mixed $site title of site
      *
-     * @param mixed $site DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Title
      *
      * @access public
      */
@@ -65,13 +67,9 @@ class Title extends AuraTitle
     }
 
     /**
-     * __toString
+     * outputs title and site title meta tags
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return string
      *
      * @access public
      */

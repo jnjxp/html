@@ -44,9 +44,9 @@ class Links extends AuraLinksHelper
 {
 
     /**
-     * data
+     * default icons data array
      *
-     * @var mixed
+     * @var array
      * @access protected
      */
     protected $icons = [
@@ -63,19 +63,15 @@ class Links extends AuraLinksHelper
 
 
     /**
-     * icons
+     * add icons based on cofig array
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param array $icons data to create icons from
      *
-     * @param mixed $icons DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Links
      *
      * @access public
      */
-    public function icons($icons = null)
+    public function icons(array $icons = null)
     {
         foreach ($this->fixIconsArray(($icons ?: $this->icons)) as $icon) {
             $this->add($icon);
@@ -84,29 +80,27 @@ class Links extends AuraLinksHelper
     }
 
     /**
-     * fixIconsArray
+     * fix icons data into usable array
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param array $icons data array to fix
      *
-     * @param mixed $icons DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return array
      *
      * @access protected
      */
-    protected function fixIconsArray($icons)
+    protected function fixIconsArray(array $icons)
     {
         $array = [];
         foreach ($icons as $rel => $data) {
             foreach ((array) $data['sizes'] as $size) {
-                $array[] = [
-                    'rel'   => $rel,
-                    'sizes' => "{$size}x{$size}",
-                    'href'  => sprintf($data['pattern'], $size),
-                    'attr'  => (isset($data['attr']) ? $data['attr'] : [])
-                ];
+                $array[] = array_merge_recursive(
+                    [
+                        'rel'   => $rel,
+                        'sizes' => "{$size}x{$size}",
+                        'href'  => sprintf($data['pattern'], $size),
+                    ],
+                    (isset($data['attr']) ? $data['attr'] : [])
+                );
             }
         }
         return $array;

@@ -32,10 +32,10 @@ use Aura\Html\Helper\AbstractHelper;
 /**
  * Modal
  *
- * Description Here!
+ * A Bootstrap modal window.
  *
- * @category CategoryName
- * @package  PackageName
+ * @category Helper
+ * @package  Jnjxp\Html
  * @author   Jake Johns <jake@jakejohns.net>
  * @license  http://www.gnu.org/licenses/agpl-3.0.txt AGPL V3
  * @link     http://jakejohns.net
@@ -44,32 +44,76 @@ use Aura\Html\Helper\AbstractHelper;
  */
 class Modal extends AbstractHelper
 {
+    /**
+     * effect class name
+     *
+     * @var string
+     * @access protected
+     */
     protected $effect = 'fade';
 
+    /**
+     * tag to use for modal title
+     *
+     * @var string
+     * @access protected
+     */
     protected $titleTag = 'h4';
 
+    /**
+     * properties to build button from
+     *
+     * @var array | null
+     * @access protected
+     */
     protected $button;
 
+    /**
+     * attributes for modal
+     *
+     * @var array | null
+     * @access protected
+     */
     protected $attr;
 
+    /**
+     * title of modal window
+     *
+     * @var string
+     * @access protected
+     */
     protected $title;
 
+    /**
+     * html for modal body
+     *
+     * @var string
+     * @access protected
+     */
     protected $body;
 
+    /**
+     * modal footer html
+     *
+     * @var string
+     * @access protected
+     */
     protected $footer;
 
+    /**
+     * html
+     *
+     * @var string
+     * @access protected
+     */
     protected $html = '';
 
     /**
-     * __invoke
+     * sets modal spec
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param array $spec array of properties to pass to setters
      *
-     * @param array $spec DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Modal
      *
      * @access public
      */
@@ -82,12 +126,9 @@ class Modal extends AbstractHelper
     }
 
     /**
-     * __toString
+     * build modal html
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
-     *
-     * @return mixed
+     * @return string
      *
      * @access public
      */
@@ -135,13 +176,9 @@ class Modal extends AbstractHelper
     }
 
     /**
-     * resetProperties
+     * reset properties of modal
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return void
      *
      * @access protected
      */
@@ -158,13 +195,9 @@ class Modal extends AbstractHelper
     }
 
     /**
-     * renderButton
+     * build modal launch button
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return void
      *
      * @access protected
      */
@@ -191,13 +224,9 @@ class Modal extends AbstractHelper
     }
 
     /**
-     * renderHeader
+     * build modal header
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return void
      *
      * @access protected
      */
@@ -220,13 +249,9 @@ class Modal extends AbstractHelper
     }
 
     /**
-     * renderBody
+     * build modal body
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return void
      *
      * @access protected
      */
@@ -238,13 +263,9 @@ class Modal extends AbstractHelper
     }
 
     /**
-     * renderFooter
+     * build modal footer if set
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return void
      *
      * @access protected
      */
@@ -260,15 +281,11 @@ class Modal extends AbstractHelper
     }
 
     /**
-     * setTitle
+     * set modal title string
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $title title of modal
      *
-     * @param mixed $title DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Modal
      *
      * @access public
      */
@@ -279,15 +296,11 @@ class Modal extends AbstractHelper
     }
 
     /**
-     * setTitleTag
+     * set tag used for modal title
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $tag html tag name
      *
-     * @param mixed $tag DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Modal
      *
      * @access public
      */
@@ -298,15 +311,11 @@ class Modal extends AbstractHelper
     }
 
     /**
-     * setBody
+     * set modal body html
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $body modal body html
      *
-     * @param mixed $body DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Modal
      *
      * @access public
      */
@@ -317,15 +326,11 @@ class Modal extends AbstractHelper
     }
 
     /**
-     * setFooter
+     * set modal footer html
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $footer modal footer html
      *
-     * @param mixed $footer DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Modal
      *
      * @access public
      */
@@ -336,15 +341,11 @@ class Modal extends AbstractHelper
     }
 
     /**
-     * setEffect
+     * set effect
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $effect effect class to add
      *
-     * @param mixed $effect DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Modal
      *
      * @access public
      */
@@ -355,15 +356,12 @@ class Modal extends AbstractHelper
     }
 
     /**
-     * setButton
+     * set button properties
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $content content of button
+     * @param array  $attr    button attributes
      *
-     * @param mixed $content DESCRIPTION
-     * @param array $attr    DESCRIPTION
-     *
-     * @return mixed
+     * @return Modal
      *
      * @access public
      */
@@ -382,15 +380,11 @@ class Modal extends AbstractHelper
     }
 
     /**
-     * setAttr
+     * set modal attributes. Auto generate id if not present
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param array $attr modal attirbutes
      *
-     * @param array $attr DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Modal
      *
      * @access public
      */
@@ -404,15 +398,11 @@ class Modal extends AbstractHelper
     }
 
     /**
-     * setSpec
+     * set modal specs. Call setters based on array.
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param array $spec array specification
      *
-     * @param array $spec DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Modal
      *
      * @access public
      */

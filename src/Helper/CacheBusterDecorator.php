@@ -57,29 +57,25 @@ class CacheBusterDecorator
     protected $helper;
 
     /**
-    * __construct
-    *
-    * @param mixed $helper   DESCRIPTION
-    * @param mixed $manifest DESCRIPTION
-    *
-    * @return mixed
-    *
-    * @access public
-    */
-    public function __construct($helper, $manifest)
+     * decorate a helper
+     *
+     * @param object $helper helper to decorate
+     *
+     * @access public
+     */
+    public function __construct($helper)
     {
         $this->helper = $helper;
-        $this->setDefaultManifest($manifest);
     }
 
     /**
-    * __call
+    * proxy call to helper, busting any attribute named href or src
     *
-    * @param mixed $method DESCRIPTION
-    * @param mixed $args   DESCRIPTION
+    * @param string $method method to call
+    * @param array  $args   args
     *
     * @return mixed
-    * @throws exceptionclass [description]
+    * @throws BadMethodCallException if helper does not have method
     *
     * @access public
     */
@@ -96,19 +92,13 @@ class CacheBusterDecorator
             }
         }
 
-        $reflection->invokeArgs($this->helper, $args);
-
-        return $this;
+        return $reflection->invokeArgs($this->helper, $args);
     }
 
     /**
-     * __invoke
-     *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * proxy to add method via busting __call
      *
      * @return mixed
-     * @throws exceptionclass [description]
      *
      * @access public
      */
@@ -116,7 +106,7 @@ class CacheBusterDecorator
     {
         $args = func_get_args();
         if ($args) {
-            call_user_func_array(array($this, 'add'), $args);
+            return call_user_func_array(array($this, 'add'), $args);
         }
         return $this;
     }

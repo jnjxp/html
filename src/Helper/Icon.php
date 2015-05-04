@@ -46,16 +46,12 @@ class Icon extends AbstractHelper
 {
 
     /**
-     * __invoke
+     * create markup for an icon with optional alt
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $name name of icon
+     * @param mixed  $alt  false for no alt, true for name as alt, or string for alt
      *
-     * @param mixed $name DESCRIPTION
-     * @param bool  $alt  DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return string
      *
      * @access public
      */
