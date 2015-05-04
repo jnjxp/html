@@ -9,12 +9,6 @@
             "email": "jake@jakejohns.net"
         }
     ],
-    "repositories": [
-      {
-         "type": "vcs",
-         "url": "/home/jnj/projects/php/jnjxp/html.head"
-      }
-    ],
     "require": {
         "php": ">=5.3.0",
         "aura/html": "~2.1"
