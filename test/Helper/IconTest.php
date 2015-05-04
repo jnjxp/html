@@ -17,7 +17,7 @@
 * You should have received a copy of the GNU Affero General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *
-* @category  Helper
+* @category  Test
 * @package   Jnjxp\Html
 * @author    Jake Johns <jake@jakejohns.net>
 * @copyright 2015 Jake Johns
@@ -25,75 +25,66 @@
 * @link      http://jakejohns.net
  */
 
-namespace Jnjxp\Html\Helper;
-
-use Aura\Html\Helper\Title as AuraTitle;
+namespace JnjxpTest\Html\Helper;
 
 /**
- * HTML Title tags and meta
+ * Icon Test
  *
- * @category Helper
+ * @category Test
  * @package  Jnjxp\Html
  * @author   Jake Johns <jake@jakejohns.net>
  * @license  http://www.gnu.org/licenses/agpl-3.0.txt AGPL V3
- * @version  Release: @package_version@
  * @link     http://jakejohns.net
  *
+ * @see      PHPUnit_Framework_TestCase
  */
-class Title extends AuraTitle
+class IconTest extends AbstractHelperTest
 {
 
     /**
-     * site title
+     * helper return html for a simple icon
      *
-     * @var string
-     * @access protected
-     */
-    protected $site;
-
-    /**
-     * set site title for meta
-     *
-     * @param mixed $site title of site
-     *
-     * @return Title
+     * @return void
      *
      * @access public
      */
-    public function setSite($site)
+    public function testPlain()
     {
-        $this->site = $site;
-        return $this;
+        $helper = $this->helper;
+        $expect = '<span class="icon icon-foo" aria-hidden="true"><!-- --></span>';
+        $actual = $helper('foo');
+        $this->assertSame($expect, $actual);
     }
 
     /**
-     * outputs title and site title meta tags
+     * helper returns icon with text for screen reader
      *
-     * @return string
+     * @return void
      *
      * @access public
      */
-    public function __toString()
+    public function testAlt()
     {
+        $helper = $this->helper;
+        $expect = '<span class="icon icon-foo" aria-hidden="true"><!-- --></span>'
+            . ' <span class="sr-only">bar</span>';
+        $actual = $helper('foo', 'bar');
+        $this->assertSame($expect, $actual);
+    }
 
-        $meta = [
-            'name'     => 'title',
-            'property' => 'og:title',
-            'content'  => $this->title
-        ];
-
-        $site = [
-            'property' => 'og:site_name',
-            'content'  => $this->site
-        ];
-
-        $title = $this->indent(1, "<title>{$this->title}</title>")
-            . $this->indent(1, $this->void('meta', $meta))
-            . ($this->site ? $this->indent(1, $this->void('meta', $site)) : '');
-
-        $this->title = null;
-        $this->site = null;
-
-        return $title;
+    /**
+     * helper returns icon with text for screen reader based on icon name
+     *
+     * @return void
+     *
+     * @access public
+     */
+    public function testSimpleAlt()
+    {
+        $helper = $this->helper;
+        $expect = '<span class="icon icon-foo" aria-hidden="true"><!-- --></span>'
+            . ' <span class="sr-only">foo</span>';
+        $actual = $helper('foo', true);
+        $this->assertSame($expect, $actual);
     }
 }

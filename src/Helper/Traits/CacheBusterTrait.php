@@ -43,27 +43,36 @@ use InvalidArgumentException;
 trait CacheBusterTrait
 {
     /**
-     * manifest
+     * loaded manifests
      *
-     * @var mixed
+     * @var array
      * @access protected
      * @static
      */
-    protected static $manifests;
+    protected static $manifests = array();
 
     /**
-     * defaultManifest
+     * path to pubic root
      *
-     * @var mixed
+     * @var string
+     * @access protected
+     * @static
+     */
+    protected static $public;
+
+    /**
+     * default manifest
+     *
+     * @var string
      * @access protected
      */
     protected $defaultManifest;
 
     /**
-    * getFile
+    * get a versioned file name based on file name
     *
-    * @param mixed $file     DESCRIPTION
-    * @param mixed $manifest DESCRIPTION
+    * @param mixed $file     file key to look for in manifest
+    * @param mixed $manifest path to manifest, relative to root
     *
     * @return mixed
     *
@@ -75,10 +84,16 @@ trait CacheBusterTrait
             $manifest = $this->getDefaultManifest();
         }
 
+        $dir = str_replace(
+            static::$public,
+            '',
+            dirname($manifest)
+        );
+
         $manifest = $this->loadManifest($manifest);
 
         if (isset($manifest->$file)) {
-            return '/build/' . $manifest->$file;
+            return "/{$dir}/{$manifest->$file}";
         }
 
         throw new InvalidArgumentException(
@@ -87,9 +102,24 @@ trait CacheBusterTrait
     }
 
     /**
-    * setDefaultManifest
+     * set path to public root
+     *
+     * @param mixed $public path to public root
+     *
+     * @return mixed
+     *
+     * @access public
+     */
+    public function setPublic($public)
+    {
+        static::$public = realpath($public);
+        return $this;
+    }
+
+    /**
+    * set a default manifest
     *
-    * @param mixed $manifest DESCRIPTION
+    * @param string $manifest path to manifest
     *
     * @return mixed
     *
@@ -101,36 +131,43 @@ trait CacheBusterTrait
     }
 
     /**
-    * getDefaultManifest
+    * gets default manifest
     *
-    * @return mixed
+    * @return string
     *
     * @access public
     */
     public function getDefaultManifest()
     {
         if ( null === $this->defaultManifest ) {
-            $this->defaultManifest = $_SERVER['DOCUMENT_ROOT']
-                . '/build/rev-manifest.json';
+            $this->defaultManifest = 'build/rev-manifest.json';
         }
         return $this->defaultManifest;
     }
 
     /**
-    * loadManifest
+    * loads a manifest from json file
     *
-    * @param mixed $file DESCRIPTION
+    * @param string $file path to manifest
     *
-    * @return mixed
+    * @return Object
     *
     * @access public
     */
     public function loadManifest($file)
     {
         if (!isset(static::$manifests[$file])) {
+            $path = realpath(static::$public . "/{$file}");
+
+            if (! $path) {
+                throw new InvalidArgumentException(
+                    "Manifest {$file} does not exist"
+                );
+            }
+
             static::$manifests[$file] = json_decode(
                 file_get_contents(
-                    $file,
+                    $path,
                     true
                 )
             );

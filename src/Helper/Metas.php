@@ -30,7 +30,7 @@ namespace Jnjxp\Html\Helper;
 use Aura\Html\Helper\Metas as AuraMetas;
 
 /**
- * Description
+ * HTML Meta tags
  *
  * @category Helper
  * @package  Jnjxp\Html
@@ -44,17 +44,15 @@ class Metas extends AuraMetas
 {
 
     /**
-     * addProperty
+     * add a property meta tag
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * eg: <meta property="foo" content="bar" />
      *
-     * @param mixed $property DESCRIPTION
-     * @param mixed $content  DESCRIPTION
-     * @param int   $position DESCRIPTION
+     * @param string $property property name
+     * @param string $content  property value
+     * @param int    $position sort order
      *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Metas
      *
      * @access public
      */
@@ -69,17 +67,16 @@ class Metas extends AuraMetas
     }
 
     /**
-     * addOpenGraphProperty
+     * add OpenGraph Property
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * http://ogp.me/
+     * eg: <meta property="og:foo" content="bar" />
      *
-     * @param mixed $property DESCRIPTION
-     * @param mixed $content  DESCRIPTION
-     * @param int   $position DESCRIPTION
+     * @param string $property property name without the "og:"
+     * @param string $content  content of the property
+     * @param int    $position sort order
      *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Metas
      *
      * @access public
      */
@@ -94,56 +91,46 @@ class Metas extends AuraMetas
     }
 
     /**
-     * charset
+     * adds character set meta, default to utf-8
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $charset  charset name
+     * @param int    $position sort order
      *
-     * @param mixed $charset  DESCRIPTION
-     * @param int   $position DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Metas
      *
      * @access public
      */
-    public function charset($charset, $position = 10)
+    public function charset($charset = 'UTF-8', $position = 10)
     {
         $this->add(['charset' => $charset], $position);
         return $this;
     }
 
     /**
-     * compat
+     * set compatible mode for ie, default to "edge"
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * https://www.modern.ie/en-us/performance/how-to-use-x-ua-compatible
      *
-     * @param mixed $content  DESCRIPTION
-     * @param int   $position DESCRIPTION
+     * @param string $content  IE=mode
+     * @param int    $position sort order
      *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Metas
      *
      * @access public
      */
-    public function compat($content, $position = 100)
+    public function compat($content = 'IE=edge', $position = 100)
     {
         $this->addHttp('X-UA-Compatible', $content, $position);
         return $this;
     }
 
     /**
-     * description
+     * set description meta including OG property
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $description description
+     * @param int    $position    sort order
      *
-     * @param mixed $description DESCRIPTION
-     * @param int   $position    DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Metas
      *
      * @access public
      */
@@ -161,56 +148,44 @@ class Metas extends AuraMetas
     }
 
     /**
-     * loc
+     * set open graph locale, default to 'en_US'
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $locale   language_TERRITORY
+     * @param int    $position sort order
      *
-     * @param mixed $locale   DESCRIPTION
-     * @param int   $position DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Metas
      *
      * @access public
      */
-    public function loc($locale, $position = 100)
+    public function loc($locale = 'en_US', $position = 100)
     {
         $this->addOpenGraphProperty('locale', $locale, $position);
         return $this;
     }
 
     /**
-     * robots
+     * set robot meta, default to index, follow
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $robots   DESCRIPTION
+     * @param int    $position sort order
      *
-     * @param mixed $robots   DESCRIPTION
-     * @param int   $position DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Metas
      *
      * @access public
      */
-    public function robots($robots, $position = 100)
+    public function robots($robots = 'index, follow', $position = 100)
     {
         $this->addName('robots', $robots, $position);
         return $this;
     }
 
     /**
-     * url
+     * set opengraph url
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $url      DESCRIPTION
+     * @param int    $position sort order
      *
-     * @param mixed $url      DESCRIPTION
-     * @param int   $position DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Metas
      *
      * @access public
      */
@@ -222,36 +197,32 @@ class Metas extends AuraMetas
 
 
     /**
-     * viewport
+     * set viewpoer setting,
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * default 'width=device-width, initial-scale=1, user-scalable=no'
      *
-     * @param mixed $viewport DESCRIPTION
-     * @param int   $position DESCRIPTION
+     * @param string $viewport viewport mode
+     * @param int    $position sort order
      *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Metas
      *
      * @access public
      */
-    public function viewport($viewport, $position = 100)
-    {
+    public function viewport(
+        $viewport = 'width=device-width, initial-scale=1, user-scalable=no',
+        $position = 100
+    ) {
         $this->addName('viewport', $viewport, $position);
         return $this;
     }
 
     /**
-     * image
+     * set opengraph and rel image
      *
-     * Summaries for methods should use 3rd person declarative rather
-     * than 2nd person imperative, beginning with a verb phrase.
+     * @param string $image    DESCRIPTION
+     * @param int    $position sort order
      *
-     * @param mixed $image    DESCRIPTION
-     * @param int   $position DESCRIPTION
-     *
-     * @return mixed
-     * @throws exceptionclass [description]
+     * @return Metas
      *
      * @access public
      */
