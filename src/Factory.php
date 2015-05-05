@@ -47,7 +47,7 @@ class Factory
     /**
      * escaper
      *
-     * @var Aura\Html\Escaper
+     * @var \Aura\Html\Escaper
      * @access protected
      */
     protected $escaper;
@@ -117,7 +117,7 @@ class Factory
     /**
      * create array of factories
      *
-     * @return array
+     * @return callable[]
      *
      * @access protected
      */

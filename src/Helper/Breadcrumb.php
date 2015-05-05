@@ -106,7 +106,7 @@ class Breadcrumb extends AbstractHelper
     /**
      * set attributes for breadcrumb
      *
-     * @param array $attr attributes
+     * @param null|array $attr attributes
      *
      * @return Breadcrumb
      *
@@ -129,7 +129,7 @@ class Breadcrumb extends AbstractHelper
      */
     public function __toString()
     {
-        if (! $this->stack) {
+        if (empty($this->stack)) {
             return '';
         }
 
