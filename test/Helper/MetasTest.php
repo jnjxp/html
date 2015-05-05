@@ -267,5 +267,4 @@ class MetasTest extends AbstractHelperTest
         $actual = "$helper";
         $this->assertSame($expect, $actual);
     }
-
 }

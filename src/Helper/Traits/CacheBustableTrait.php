@@ -111,5 +111,4 @@ trait CacheBustableTrait
         }
         return $this->cacheBusterFactory;
     }
-
 }

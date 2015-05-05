@@ -139,7 +139,7 @@ trait CacheBusterTrait
     */
     public function getDefaultManifest()
     {
-        if ( null === $this->defaultManifest ) {
+        if (null === $this->defaultManifest) {
             $this->defaultManifest = 'build/rev-manifest.json';
         }
         return $this->defaultManifest;
@@ -174,7 +174,4 @@ trait CacheBusterTrait
         }
         return static::$manifests[$file];
     }
-
 }
-
-

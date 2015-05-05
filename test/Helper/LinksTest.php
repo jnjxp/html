@@ -65,5 +65,4 @@ class LinksTest extends AbstractHelperTest
 
         $this->assertSame($expect, $actual);
     }
-
 }

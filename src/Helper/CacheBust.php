@@ -59,5 +59,3 @@ class CacheBust
         return $this->bust($file, $manifest);
     }
 }
-
-

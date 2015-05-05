@@ -87,5 +87,4 @@ class CacheBustTest extends AbstractHelperTest
         $this->setExpectedException('\InvalidArgumentException');
         $helper->bust('bar');
     }
-
 }
