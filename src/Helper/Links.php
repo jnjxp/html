@@ -65,7 +65,7 @@ class Links extends AuraLinksHelper
     /**
      * add icons based on cofig array
      *
-     * @param array $icons data to create icons from
+     * @param null|array $icons data to create icons from
      *
      * @return Links
      *

@@ -56,8 +56,8 @@ class Styles extends AuraStyles
     /**
      * makes an internal style tag
      *
-     * @param string $style css snippet
-     * @param array  $attr  attributes for style tag
+     * @param string     $style css snippet
+     * @param null|array $attr  attributes for style tag
      *
      * @return string
      *
@@ -74,9 +74,9 @@ class Styles extends AuraStyles
     /**
      * add inline conditional style
      *
-     * @param string $cond  ie condition
-     * @param string $style css snippet
-     * @param array  $attr  attributes for style tag
+     * @param string     $cond  ie condition
+     * @param string     $style css snippet
+     * @param null|array $attr  attributes for style tag
      *
      * @return string
      *
@@ -92,9 +92,9 @@ class Styles extends AuraStyles
     /**
      * add inline css
      *
-     * @param string $style    css snippet
-     * @param array  $attr     attributes for style tag
-     * @param int    $position sort
+     * @param string     $style    css snippet
+     * @param null|array $attr     attributes for style tag
+     * @param int        $position sort
      *
      * @return Styles
      *
@@ -137,8 +137,8 @@ class Styles extends AuraStyles
     /**
      * capture inline snippet
      *
-     * @param array $attr     attributes for style tag
-     * @param int   $position sort
+     * @param null|array $attr     attributes for style tag
+     * @param int        $position sort
      *
      * @return Styles
      *
@@ -212,7 +212,7 @@ class Styles extends AuraStyles
      *
      * @param array $attr attributes
      *
-     * @return array
+     * @return null|array
      *
      * @access protected
      */
