@@ -74,11 +74,11 @@ class Scripts extends AuraScripts
     /**
      * add an event listner
      *
-     * @param string $function javascript sniuppet
-     * @param string $event    event to bind to, defaults to document
-     * @param string $node     node to bind
-     * @param bool   $wrap     if true, $funciton is wrappped in a function
-     * @param int    $position sort order
+     * @param string      $function javascript sniuppet
+     * @param null|string $event    event to bind to, defaults to document
+     * @param null|string $node     node to bind
+     * @param bool        $wrap     if true, $funciton is wrappped in a function
+     * @param int         $position sort order
      *
      * @return Scripts
      *
@@ -127,10 +127,10 @@ class Scripts extends AuraScripts
     /**
      * start capturing an event to bind
      *
-     * @param string $event    event to bind to, defaults to document
-     * @param string $node     node to bind
-     * @param bool   $wrap     if true, $funciton is wrappped in a function
-     * @param int    $position sort order
+     * @param null|string $event    event to bind to, defaults to document
+     * @param null|string $node     node to bind
+     * @param bool        $wrap     if true, $funciton is wrappped in a function
+     * @param int         $position sort order
      *
      * @return Scripts
      *

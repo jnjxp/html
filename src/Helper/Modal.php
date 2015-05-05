@@ -63,10 +63,10 @@ class Modal extends AbstractHelper
     /**
      * properties to build button from
      *
-     * @var array | null
+     * @var array
      * @access protected
      */
-    protected $button;
+    protected $button = array();
 
     /**
      * attributes for modal
@@ -111,7 +111,7 @@ class Modal extends AbstractHelper
     /**
      * sets modal spec
      *
-     * @param array $spec array of properties to pass to setters
+     * @param null|array $spec array of properties to pass to setters
      *
      * @return Modal
      *
@@ -140,7 +140,7 @@ class Modal extends AbstractHelper
 
         $modalId = $this->attr['id'];
 
-        if ($this->button) {
+        if (! empty($this->button)) {
             $this->buildButton();
         }
 
@@ -165,8 +165,8 @@ class Modal extends AbstractHelper
         $this->buildBody();
         $this->buildFooter();
         $this->html .= $this->indent(2, '</div>');
-        $this->html .= $this->indent(1, "</div>");
-        $this->html .= $this->indent(0, "</div>");
+        $this->html .= $this->indent(1, '</div>');
+        $this->html .= $this->indent(0, '</div>');
 
         $html = $this->html;
 
@@ -186,7 +186,7 @@ class Modal extends AbstractHelper
     {
         $this->effect   = 'fade';
         $this->titleTag = 'h4';
-        $this->button   = null;
+        $this->button   = [];
         $this->attr     = [];
         $this->title    = null;
         $this->body     = null;
