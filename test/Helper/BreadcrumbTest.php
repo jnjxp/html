@@ -175,6 +175,4 @@ class BreadcrumbTest extends AbstractHelperTest
 
         $this->assertSame($expect, $actual);
     }
-
-
 }

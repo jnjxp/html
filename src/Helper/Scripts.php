@@ -87,8 +87,8 @@ class Scripts extends AuraScripts
     public function addEventListener(
         $function,
         $event = null,
-        $node  = null,
-        $wrap  = false,
+        $node = null,
+        $wrap = false,
         $position = 1000
     ) {
         $event = $event ?: 'DOMContentLoaded';

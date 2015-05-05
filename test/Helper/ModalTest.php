@@ -241,5 +241,4 @@ class ModalTest extends AbstractHelperTest
 
         $this->assertSame($expect, $actual);
     }
-
 }
