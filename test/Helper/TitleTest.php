@@ -72,5 +72,4 @@ class TitleTest extends AbstractHelperTest
             . PHP_EOL;
         $this->assertSame($expect, $actual);
     }
-
 }
