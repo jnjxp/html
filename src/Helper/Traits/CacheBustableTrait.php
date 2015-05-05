@@ -60,7 +60,7 @@ trait CacheBustableTrait
     /**
     * decorate object and optionally set default manifest
     *
-    * @param string $manifest path to manifest
+    * @param null|string $manifest path to manifest
     *
     * @return CacheBusterDecorator
     *
@@ -73,7 +73,7 @@ trait CacheBustableTrait
             $this->busted = $factory($this);
         }
 
-        if ($manifest) {
+        if (null !== $manifest) {
             $this->busted->setDefaultManifest($manifest);
         }
 
@@ -85,7 +85,7 @@ trait CacheBustableTrait
     *
     * @param callable $factory factory to create decorated instance
     *
-    * @return mixed
+    * @return CacheBustableTrait
     *
     * @access public
     */

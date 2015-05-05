@@ -117,7 +117,7 @@ class Factory
     /**
      * create array of factories
      *
-     * @return callable[]
+     * @return array<*,\Closure>
      *
      * @access protected
      */

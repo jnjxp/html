@@ -124,7 +124,7 @@ class Locator
      * @param string   $name     name of helper
      * @param callable $callable callable factory to create helper
      *
-     * @return mixed
+     * @return Locator
      *
      * @access public
      */
