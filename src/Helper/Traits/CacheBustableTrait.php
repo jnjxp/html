@@ -85,7 +85,7 @@ trait CacheBustableTrait
     *
     * @param callable $factory factory to create decorated instance
     *
-    * @return CacheBustableTrait
+    * @return CacheBustableInterface
     *
     * @access public
     */

@@ -28,6 +28,7 @@
 namespace Jnjxp\Html\Helper;
 
 use Jnjxp\Html\Helper\Traits\CacheBusterTrait;
+use Jnjxp\Html\Helper\CacheBusterInterface;
 
 use BadMethodCallException;
 
@@ -44,7 +45,7 @@ use ReflectionMethod;
  * @link     http://jakejohns.net
  *
  */
-class CacheBusterDecorator
+class CacheBusterDecorator implements CacheBusterInterface
 {
     use CacheBusterTrait;
 

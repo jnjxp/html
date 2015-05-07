@@ -106,7 +106,7 @@ trait CacheBusterTrait
      *
      * @param mixed $public path to public root
      *
-     * @return CacheBusterTrait
+     * @return CacheBusterInterface
      *
      * @access public
      */

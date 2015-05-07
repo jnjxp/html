@@ -17,7 +17,7 @@
 * You should have received a copy of the GNU Affero General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *
-* @category  Helper
+* @category  Interface
 * @package   Jnjxp\Html
 * @author    Jake Johns <jake@jakejohns.net>
 * @copyright 2015 Jake Johns
@@ -27,36 +27,46 @@
 
 namespace Jnjxp\Html\Helper;
 
-use Jnjxp\Html\Helper\Traits\CacheBusterTrait;
-use Jnjxp\Html\Helper\CacheBusterInterface;
-
 /**
- * Cache bust a file
+ * Cache bustable helper
  *
- * @category Helper
- * @package  Jnjxp\Helper
+ * @category Interface
+ * @package  Jnjxp\Html
  * @author   Jake Johns <jake@jakejohns.net>
  * @license  http://www.gnu.org/licenses/agpl-3.0.txt AGPL V3
- * @version  Release: @package_version@
  * @link     http://jakejohns.net
  *
  */
-class CacheBust implements CacheBusterInterface
+interface CacheBustableInterface
 {
-    use CacheBusterTrait;
-
     /**
-    * __invoke
+    * decorate object and optionally set default manifest
     *
-    * @param string      $file     file to cache bust
-    * @param null|string $manifest manifest to bust with
+    * @param null|string $manifest path to manifest
     *
-    * @return string
+    * @return CacheBusterDecorator
     *
     * @access public
     */
-    public function __invoke($file, $manifest = null)
-    {
-        return $this->bust($file, $manifest);
-    }
+    public function bust($manifest = null);
+
+    /**
+    * set decorator factory
+    *
+    * @param callable $factory factory to create decorated instance
+    *
+    * @return CacheBustableInterface
+    *
+    * @access public
+    */
+    public function setCacheBusterFactory($factory);
+
+    /**
+    * gets decorated instance factory
+    *
+    * @return callable
+    *
+    * @access public
+    */
+    public function getCacheBusterFactory();
 }
