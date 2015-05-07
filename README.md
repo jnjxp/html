@@ -7,7 +7,8 @@ jnjxp/html : HTML Helpers
 [![Coverage Status][ico-scrutinizer]][link-scrutinizer]
 [![Quality Score][ico-code-quality]][link-code-quality]
 
-**jnjxp\html** is an extension of [Aura.Html](https://github.com/aura/html).
+**jnjxp\html** is an extension of
+[Aura.Html](https://github.com/auraphp/Aura.Html).
 
 ## Installation
 ```console
@@ -28,7 +29,7 @@ $helper('icon','foo');
 
 ```
 ## Helpers
-See the [Aura.Html](https://github.com/aura/html) documentation
+See the [Aura.Html](https://github.com/auraphp/Aura.Html) documentation
 ([tag](https://github.com/auraphp/Aura.Html/blob/2.x/README-HELPERS.md) and
 [input](https://github.com/auraphp/Aura.Html/blob/2.x/README-FORMS.md)) for base functionality.
 - [Breadcrumb](#breadcrumb)
