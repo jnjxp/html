@@ -17,7 +17,7 @@
 * You should have received a copy of the GNU Affero General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *
-* @category  Helper
+* @category  Interface
 * @package   Jnjxp\Html
 * @author    Jake Johns <jake@jakejohns.net>
 * @copyright 2015 Jake Johns
@@ -27,36 +27,73 @@
 
 namespace Jnjxp\Html\Helper;
 
-use Jnjxp\Html\Helper\Traits\CacheBusterTrait;
-use Jnjxp\Html\Helper\CacheBusterInterface;
+use InvalidArgumentException;
 
 /**
- * Cache bust a file
+ * Interface to cache buster
  *
- * @category Helper
- * @package  Jnjxp\Helper
+ * @category Interface
+ * @package  Jnjxp\Html
  * @author   Jake Johns <jake@jakejohns.net>
  * @license  http://www.gnu.org/licenses/agpl-3.0.txt AGPL V3
  * @version  Release: @package_version@
  * @link     http://jakejohns.net
  *
  */
-class CacheBust implements CacheBusterInterface
+interface CacheBusterInterface
 {
-    use CacheBusterTrait;
 
     /**
-    * __invoke
+    * get a versioned file name based on file name
     *
-    * @param string      $file     file to cache bust
-    * @param null|string $manifest manifest to bust with
+    * @param mixed $file     file key to look for in manifest
+    * @param mixed $manifest path to manifest, relative to root
+    *
+    * @return mixed
+    *
+    * @access public
+    */
+    public function bust($file, $manifest = null);
+
+    /**
+     * set path to public root
+     *
+     * @param mixed $public path to public root
+     *
+     * @return CacheBusterTrait
+     *
+     * @access public
+     */
+    public function setPublic($public);
+
+    /**
+    * set a default manifest
+    *
+    * @param string $manifest path to manifest
+    *
+    * @return mixed
+    *
+    * @access public
+    */
+    public function setDefaultManifest($manifest);
+
+    /**
+    * gets default manifest
     *
     * @return string
     *
     * @access public
     */
-    public function __invoke($file, $manifest = null)
-    {
-        return $this->bust($file, $manifest);
-    }
+    public function getDefaultManifest();
+
+    /**
+    * loads a manifest from json file
+    *
+    * @param string $file path to manifest
+    *
+    * @return Object
+    *
+    * @access public
+    */
+    public function loadManifest($file);
 }

@@ -29,6 +29,7 @@ namespace Jnjxp\Html\Helper;
 
 use Aura\Html\Helper\Styles as AuraStyles;
 use Jnjxp\Html\Helper\Traits\CacheBustableTrait;
+use Jnjxp\Html\Helper\CacheBustableInterface;
 
 /**
  * HTML Styles
@@ -41,7 +42,7 @@ use Jnjxp\Html\Helper\Traits\CacheBustableTrait;
  *
  * @see      AuraStyles
  */
-class Styles extends AuraStyles
+class Styles extends AuraStyles implements CacheBustableInterface
 {
     use CacheBustableTrait;
 
@@ -112,10 +113,10 @@ class Styles extends AuraStyles
     /**
      * add inline conditional css
      *
-     * @param string $cond     ie condition
-     * @param string $style    css snippet
-     * @param array  $attr     attributes for style tag
-     * @param int    $position sort
+     * @param string     $cond     ie condition
+     * @param string     $style    css snippet
+     * @param null|array $attr     attributes for style tag
+     * @param int        $position sort
      *
      * @return Styles
      *
@@ -162,9 +163,9 @@ class Styles extends AuraStyles
     /**
      * capture inline conditional style
      *
-     * @param mixed $cond     ie condition
-     * @param array $attr     attributes for style tag
-     * @param int   $position sort
+     * @param mixed      $cond     ie condition
+     * @param null|array $attr     attributes for style tag
+     * @param int        $position sort
      *
      * @return Styles
      *

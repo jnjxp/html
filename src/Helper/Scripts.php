@@ -29,6 +29,7 @@ namespace Jnjxp\Html\Helper;
 
 use Aura\Html\Helper\Scripts as AuraScripts;
 use Jnjxp\Html\Helper\Traits\CacheBustableTrait;
+use Jnjxp\Html\Helper\CacheBustableInterface;
 
 /**
  * HTML Scripts
@@ -41,7 +42,7 @@ use Jnjxp\Html\Helper\Traits\CacheBustableTrait;
  *
  * @see      AuraScripts
  */
-class Scripts extends AuraScripts
+class Scripts extends AuraScripts implements CacheBustableInterface
 {
     use CacheBustableTrait;
 
